@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 export function BrandCredit({ className }: { className?: string }) {
   return (
     <p className={cn("text-xs text-muted-foreground", className)}>
-      Designed &amp; developed by{" "}
+      Powered by{" "}
       <a
         href={siteConfig.developer.url}
         target="_blank"
@@ -12,17 +12,7 @@ export function BrandCredit({ className }: { className?: string }) {
         className="font-semibold text-brand transition-colors hover:text-brand/80 hover:underline"
       >
         {siteConfig.developer.name}
-      </a>{" "}
-      &bull; Distributed by a{" "}
-      <a
-        href={siteConfig.distributor.url}
-        target="_blank"
-        rel="noopener"
-        className="font-semibold text-brand transition-colors hover:text-brand/80 hover:underline"
-      >
-        {siteConfig.distributor.name}
       </a>
-      .
     </p>
   );
 }

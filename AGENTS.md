@@ -1,53 +1,57 @@
 # AGENTS.md
 
-Guide for AI coding assistants (Claude Code, Cursor, Copilot, Codex and others) working in a project built on **DropX Admin by Vega Solution**. Human developers can read it too: it is the short version of the project's conventions.
+Guide for AI coding assistants (Claude Code, Cursor, Copilot, Codex and others) working on **Vega Web Portal**. Human developers can read it too: it is the short version of the project's conventions.
 
 ## Project
 
-Admin dashboard template on Next.js 16 (App Router), React 19, TypeScript (strict) and Tailwind CSS v4. No backend: all data is typed mock data, ready to swap for real API calls.
+Multi-portal service booking platform on Next.js 16 (App Router), React 19, TypeScript (strict) and Tailwind CSS v4. Backend API at `http://127.0.0.1:4000`.
 
 ## Commands
 
 | Command          | Purpose                             |
 | ---------------- | ----------------------------------- |
-| `yarn dev`       | Dev server on http://localhost:3000 |
-| `yarn build`     | Production build                    |
-| `yarn lint`      | ESLint                              |
-| `yarn typecheck` | `tsc --noEmit`                      |
-| `yarn format`    | Prettier                            |
+| `npm run dev`    | Dev server on http://localhost:3000 |
+| `npm run build`  | Production build                    |
+| `npm run lint`   | ESLint                              |
+| `npm run typecheck` | `tsc --noEmit`                   |
+| `npm run format` | Prettier                            |
 
-Run `yarn lint` and `yarn typecheck` after every change.
+Run `npm run lint` and `npm run typecheck` after every change.
 
 ## Where things live
 
 - `app/(portals)/` portal pages for admin, user, vendor, and service boy with their own layouts
-- `app/(auth)/` authentication screens with their own centered layout
-- `config/navigation.ts` the sidebar menu; the breadcrumb and `sitemap.xml` are generated from it
-- `config/site.ts` site name, URL, author and the demo user
-- `components/ui/` primitives: `Button`, `Card`, `Input`, `Select`, `Textarea`, `Checkbox`, `Badge`, `Avatar`, `Skeleton`, `EmptyState` and more
+- `app/(auth)/` authentication screen templates
+- `app/login/` main login page with API integration
+- `app/register/` customer registration
+- `app/vendor/register/` vendor registration
+- `config/site.ts` site name, URL, author info
+- `components/ui/` primitives: `Button`, `Card`, `Input`, `Select`, `Textarea`, `Checkbox`, `Badge`, `Avatar`, `Skeleton`, etc.
 - `components/layout/` sidebar, header, user menu, breadcrumb, footer
-- `lib/chart-theme.ts` chart colors, tooltip and axis styles for Recharts
-- `app/globals.css` all design tokens (colors, radius, shadows, chart palette, type scale)
-- `data/` typed mock data; many pages also keep small demo arrays at the top of their file
+- `lib/api/client.ts` Axios API client configuration
+- `lib/api/services/` API service functions for each portal
+- `lib/api/types.ts` TypeScript types for API responses
+- `store/` Redux Toolkit store and slices
+- `app/globals.css` all design tokens (colors, radius, shadows, type scale)
 
 ## Conventions
 
 ### Adding a page
 
-1. Create `app/(portals)/admin/<section>/<name>/page.tsx`.
-2. Export `metadata` with a `title`; the root layout adds ` | DropX Admin`.
-3. If the page needs state or effects, put the UI in `view.tsx` with `"use client"` and keep `page.tsx` as a server file that exports `metadata` and renders the view. Many existing pages follow this pattern.
-4. Start the page with `<PageHeader title="..." description="..." />`.
-5. Add the route to `config/navigation.ts` so it appears in the sidebar, breadcrumb and sitemap.
+1. Create `app/(portals)/<portal>/<section>/page.tsx`.
+2. Export `metadata` with a `title`; the root layout adds ` | Vega Web Portal`.
+3. If the page needs state or effects, put the UI in `view.tsx` with `"use client"` and keep `page.tsx` as a server file that exports `metadata` and renders the view.
+4. Start the page with appropriate header component.
+5. Connect to Redux store for state management.
 
 ### Styling
 
 - Use theme tokens, never hard-coded hex colors: `bg-card`, `text-muted-foreground`, `border-border`, `text-primary`, `bg-success/10` and so on.
-- Charts use `chartColors`, `tooltipProps` and `axisTick` from `lib/chart-theme.ts`.
+- Brand color is `#1b1e85` - use for primary actions and branding.
 - Radius scale: cards `rounded-xl`, buttons and inputs `rounded-lg`, small chips `rounded-md`, pills `rounded-full`.
 - Shadows: `shadow-card` (resting), `shadow-dropdown` (menus, hover), `shadow-modal` (dialogs).
 - Smallest text is `text-2xs` (11px). Do not go below it.
-- Dark mode is class based (`next-themes`). `dark:` variants follow the `.dark` class, not the OS setting.
+- Dark mode is class based (`next-themes`). `dark:` variants follow the `.dark` class.
 
 ### Components and accessibility
 
@@ -57,25 +61,33 @@ Run `yarn lint` and `yarn typecheck` after every change.
 - Wrap wide tables in `overflow-x-auto` and give them the `data-table` class.
 - Icons come from `lucide-react`. Import each icon by name; do not import the whole library.
 
+### State Management
+
+- Use Redux Toolkit for global state
+- Use `useAppDispatch` and `useAppSelector` hooks from `store/hooks.ts`
+- API calls go through async thunks in slices
+- Local component state with `useState` for UI-only concerns
+
+### API Integration
+
+- Base URL configured in `lib/api/client.ts`
+- Service functions in `lib/api/services/`
+- Types defined in `lib/api/types.ts`
+- Error handling in async thunks with `rejectWithValue`
+
 ### Next.js 16
 
 This version has breaking changes from older Next.js releases. Before using a Next.js API, read the matching guide in `node_modules/next/dist/docs/`.
 
-## License rules to respect
+## Portals
 
-DropX Admin is free to use under the DropX Admin License (see `LICENSE`):
+| Portal | Path | Role |
+|--------|------|------|
+| Admin | `/admin/*` | System administration |
+| Customer | `/user/*` | Book services |
+| Vendor | `/vendor/*` | Manage business |
+| Service Boy | `/serviceboy/*` | Handle jobs |
 
-- Keep the "Designed & developed by Vega Solution" footer credit and its link to https://datadropx.net. Do not remove or hide `BrandCredit` in `components/layout/footer.tsx` or the auth layout.
-- Redistribution is allowed free of charge, including on template marketplaces, as long as the credit stays and DataDropX is named as the original author. The template itself may not be sold as a paid template, theme or UI kit.
+## Author
 
-Credit: DropX Admin is designed and developed by [DataDropX](https://datadropx.net).
-
-<!-- BEGIN:nextjs-agent-rules -->
-
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->
+**Vega Services** - [vegaservices.com](https://vegaservices.com)

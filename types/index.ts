@@ -1,5 +1,5 @@
 // ============================================
-// Global Types for DropX Admin
+// Global Types for Vega Web Portal
 // ============================================
 
 import type { LucideIcon } from "lucide-react";

@@ -1,21 +1,21 @@
 export const siteConfig = {
-  name: "DropX Admin",
+  name: "Vega Web Portal",
   description:
-    "Free Next.js 16 admin dashboard template with 8 dashboards, apps, auth pages, and 100+ UI components. Built with React 19, TypeScript, and Tailwind CSS v4.",
-  version: "1.0.1",
-  url: "https://dropx-admin-datadropx.vercel.app",
+    "Multi-portal service booking platform with Admin, Customer, Vendor, and Service Boy portals. Built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4.",
+  version: "1.0.0",
+  url: "https://vega-web.vercel.app",
   author: {
-    name: "DataDropX",
-    url: "https://datadropx.net",
-    email: "hello@datadropx.net",
+    name: "Vega Services",
+    url: "https://vegaservices.com",
+    email: "hello@vegaservices.com",
   },
   developer: {
-    name: "DataDropX",
-    url: "https://datadropx.net",
+    name: "Vega Services",
+    url: "https://vegaservices.com",
   },
   distributor: {
-    name: "ThemeWagon",
-    url: "https://themewagon.com",
+    name: "Vega Services",
+    url: "https://vegaservices.com",
   },
 } as const;
 

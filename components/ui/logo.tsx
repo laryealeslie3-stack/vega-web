@@ -30,9 +30,9 @@ export function LogoMark({ className, showWordmark = true }: LogoMarkProps) {
       </span>
       {showWordmark && (
         <div className="min-w-0">
-          <p className="truncate text-[15px] font-bold leading-none text-foreground">Vega Admin</p>
+          <p className="truncate text-[15px] font-bold leading-none text-foreground">Vega Portal</p>
           <p className="mt-1 truncate text-2xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            by Vega Solution
+            Services Platform
           </p>
         </div>
       )}

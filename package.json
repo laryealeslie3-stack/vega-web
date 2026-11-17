@@ -1,24 +1,23 @@
 {
-  "name": "dropx-admin",
-  "version": "1.0.1",
-  "description": "Free admin dashboard template by Vega Solution, built with Next.js 16, React 19, TypeScript and Tailwind CSS v4.",
+  "name": "vega-web-portal",
+  "version": "1.0.0",
+  "description": "Multi-portal service booking platform with Admin, Customer, Vendor, and Service Boy portals. Built with Next.js 16, React 19, TypeScript and Tailwind CSS v4.",
   "keywords": [
-    "admin",
-    "admin-template",
-    "dashboard",
+    "service-booking",
+    "multi-portal",
+    "admin-dashboard",
+    "vendor-portal",
     "nextjs",
     "react",
     "tailwindcss",
     "typescript",
-    "theme",
-    "free-template",
-    "datadropx"
+    "vega-services"
   ],
   "license": "SEE LICENSE IN LICENSE",
   "author": {
-    "name": "DataDropX",
-    "email": "hello@datadropx.net",
-    "url": "https://datadropx.net"
+    "name": "Vega Services",
+    "email": "hello@vegaservices.com",
+    "url": "https://vegaservices.com"
   },
   "engines": {
     "node": ">=20"

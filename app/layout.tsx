@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} by Vega Solution`,
+    default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -25,17 +25,25 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.author.name, url: siteConfig.author.url }],
   creator: siteConfig.author.name,
   publisher: siteConfig.author.name,
-  keywords: ["admin dashboard", "nextjs template", "react admin", "tailwind css", "free template"],
+  keywords: [
+    "service booking",
+    "multi-portal",
+    "admin dashboard",
+    "vendor portal",
+    "nextjs",
+    "react",
+    "tailwind css",
+  ],
   openGraph: {
     type: "website",
     siteName: siteConfig.name,
-    title: `${siteConfig.name} by Vega Solution`,
+    title: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} by Vega Solution`,
+    title: siteConfig.name,
     description: siteConfig.description,
   },
 };
@@ -47,14 +55,13 @@ export const viewport: Viewport = {
   ],
 };
 
-// Structured data so search engines and AI answer engines credit DataDropX as the author
+// Structured data for search engines
 const organization = {
   "@type": "Organization",
   "@id": `${siteConfig.author.url}/#organization`,
   name: siteConfig.author.name,
   url: siteConfig.author.url,
   email: siteConfig.author.email,
-  logo: `${siteConfig.url}/brand/datadropx-logo-for-light-bg.png`,
 };
 
 const jsonLd = {
@@ -64,19 +71,14 @@ const jsonLd = {
     {
       "@type": "SoftwareApplication",
       name: siteConfig.name,
-      alternateName: `${siteConfig.name} by Vega Solution`,
       description: siteConfig.description,
       url: siteConfig.url,
-      applicationCategory: "DeveloperApplication",
+      applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       softwareVersion: siteConfig.version,
-      isAccessibleForFree: true,
-      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       author: { "@id": organization["@id"] },
       creator: { "@id": organization["@id"] },
       publisher: { "@id": organization["@id"] },
-      copyrightHolder: { "@id": organization["@id"] },
-      copyrightYear: 2026,
     },
   ],
 };
